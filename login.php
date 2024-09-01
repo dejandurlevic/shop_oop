@@ -2,6 +2,13 @@
 require_once 'app/config/config.php';
 require_once 'app/classes/User.php';
 
+$user = new User();
+
+if($user->is_logged()){
+    header('location: index.php');
+    exit();
+}
+
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -10,18 +17,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     $loged = $user->login($email, $password);
 
-     if($loged){
-        $_SESSION['message']['type'] = 'succes';
-        $_SESSION['message']['text'] = 'User loged successfully!';
-        header('location: index.php');
-        exit();
-    }else{
+     if(!$loged){
         $_SESSION['message']['type'] = 'danger';
-        $_SESSION['message']['text'] = 'User was not successfully loged!';
+        $_SESSION['message']['text'] = 'Incorrect username or password!';
         header('location: login.php');
         exit();
     }
+
+        header('location: index.php');
+        exit();
 }
+
 ?>
 
 
@@ -67,6 +73,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <body>
 
 <div class="container">
+
+<?php if(isset($_SESSION['message'])) : ?>
+            <div class='alert alert-<?php echo $_SESSION['message']['type']; ?> alert-dismissible fade show' role="alert">
+            <?php
+            echo $_SESSION['message']['text'];
+            unset($_SESSION['message']);
+            ?>
+            </div>
+        <?php endif; ?>
+
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4">
             <div class="card">

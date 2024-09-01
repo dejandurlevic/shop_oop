@@ -32,7 +32,7 @@ class User {
         $sql = "SELECT user_id, password FROM users WHERE email = '$email'";
         $result = $this->database->query($sql);
 
-        if($result->num_rows > 1){
+        if($result->num_rows == 1){
             $user = $result->fetch_assoc();
             if(password_verify($password, $user['password'])){
                 $_SESSION['user_id'] = $user['user_id'];
@@ -42,6 +42,18 @@ class User {
         }
             return false;
         
+    }
+
+    public function is_logged(){
+        if(isset($_SESSION['user_id'])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function logout(){
+        unset($_SESSION['user_id']);
     }
 }
 ?>

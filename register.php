@@ -2,6 +2,13 @@
 require_once 'app/config/config.php';
 require_once 'app/classes/User.php';
 
+$user = new User();
+
+if($user->is_logged()){
+    header('location: index.php');
+    exit();
+}
+
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -12,8 +19,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $created = $user->register($username, $email, $password);
 
     if($created){
-        $_SESSION['message']['type'] = 'succes';
-        $_SESSION['message']['text'] = 'User registered successfully!';
+        $_SESSION['message']['type'] = 'success';
+         $_SESSION['message']['text'] = 'User successfully registered, login below!';
         header('location: login.php');
         exit();
     }else{
@@ -36,6 +43,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 </head>
 <body>
     <div class="container mt-5">
+
+    <?php if(isset($_SESSION['message'])) : ?>
+            <div class='alert alert-<?php echo $_SESSION['message']['type']; ?> alert-dismissible fade show' role="alert">
+            <?php
+            echo $_SESSION['message']['text'];
+            unset($_SESSION['message']);
+            ?>
+            </div>
+        <?php endif; ?>
+
+
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
