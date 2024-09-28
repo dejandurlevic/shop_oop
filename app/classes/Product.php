@@ -1,12 +1,9 @@
 <?php
 
-class Product{
-    protected $database;
+require_once "DB.php";
 
-    public function __construct() {
-        global $database;
-        $this->database = $database;
-    }
+class Product extends DB{
+   
 
     public function fetch_all_products(){
         $sql = "SELECT * FROM products";

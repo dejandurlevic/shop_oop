@@ -3,13 +3,6 @@ require_once 'app/config/config.php';
 require_once 'app/classes/Cart.php';
 require_once 'app/classes/User.php';
 
-/*$user = new User();
-
-if($user->is_logged()){
-    header("location: login.php");
-    exit();
-}*/
-
 $cart = new Cart();
 $cart_items = $cart->get_cart_items();
 ?>
@@ -34,6 +27,7 @@ $cart_items = $cart->get_cart_items();
                 <th>Product Name</th>
                 <th>Size</th>
                 <th>Price</th>
+                <th>Quantity</th>
                 <th>Image</th>
             </tr>
         </thead>
@@ -44,6 +38,7 @@ $cart_items = $cart->get_cart_items();
                         <td><?php echo $item['name']; ?></td>
                         <td><?php echo $item['size']; ?></td>
                         <td><?php echo $item['price']; ?></td>
+                        <td><?php echo $item['quantity']; ?></td>
                         <td><img src="<?php echo $item['images']; ?>" alt="Product Image" style="width: 50px; height: 50px;"></td>
                     </tr>
                 <?php endforeach; ?>

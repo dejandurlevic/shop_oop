@@ -1,12 +1,9 @@
 <?php
 
-class User {
-    protected $database;
+require_once "DB.php";
 
-    public function __construct() {
-        global $database;
-        $this->database = $database;
-    }
+class User extends DB{
+   
 
     public function register($username, $email, $password) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
