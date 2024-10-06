@@ -4,6 +4,14 @@ require_once "DB.php";
 
 class User extends DB{
    
+    public function __construct() {
+        // Pokreće sesiju ako nije već pokrenuta
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        parent::__construct(); // Ako DB klasa ima svoj konstruktor
+    }
+
 
     public function register($username, $email, $password) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);

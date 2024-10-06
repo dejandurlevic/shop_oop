@@ -69,7 +69,6 @@ $products = $productObj->fetch_all_products();
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
                     <h1>Welcome to My SHOP</h1>
-                    <p class="lead">Join us today and enjoy all the features we have to offer.</p>
                 </div>
             </div>
 

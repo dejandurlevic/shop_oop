@@ -17,4 +17,11 @@ class Cart extends DB{
         $result = $this->database->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function destroy_cart(){
+        $user_id = $_SESSION['user_id'];
+        $sql = "DELETE FROM cart WHERE user_id = $user_id";
+        $result = $this->database->query($sql);
+
+    }
 }

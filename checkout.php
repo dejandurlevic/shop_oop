@@ -11,6 +11,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $order = new Order();
     $ship = $order->create_order($delivery_address);
 
+    $_SESSION['message']['type'] = 'success';
+    $_SESSION['message']['text'] = 'You have successfully ordered the products!';
+    header('location: orders.php');
+    exit();
 }
 
 ?>
