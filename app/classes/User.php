@@ -57,6 +57,17 @@ class User extends DB{
         }
     }
 
+    public function is_admin(){
+        $user_id = $_SESSION['user_id'];
+        $sql = "SELECT * FROM users WHERE user_id = $user_id AND is_admin = 1";
+        $result = $this->database->query($sql);
+
+        if($result->num_rows > 0){
+            return true;
+        }
+        return false;
+    }
+
     public function logout(){
         unset($_SESSION['user_id']);
     }

@@ -27,53 +27,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         header('location: index.php');
         exit();
 }
-
+require_once 'inc/header.php';
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        .card {
-            border-radius: 15px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-        }
-        .card-header {
-            border-bottom: none;
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-        .form-control {
-            border-radius: 10px;
-        }
-        .btn-primary {
-            border-radius: 10px;
-        }
-        .form-check-label {
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    
-
-<div class="container">
+<div class="container  mt-5">
 
 <?php if(isset($_SESSION['message'])) : ?>
             <div class='alert alert-<?php echo $_SESSION['message']['type']; ?> alert-dismissible fade show' role="alert">

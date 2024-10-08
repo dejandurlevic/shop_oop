@@ -12,18 +12,17 @@ if(!$user->is_logged()) {
 
 $order = new Order();
 $orders = $order->get_orders();
+require_once 'inc/header.php';
 ?>
+            <?php if(isset($_SESSION['message'])) : ?>
+                <div class='alert alert-<?php echo $_SESSION['message']['type']; ?> alert-dismissible fade show' role="alert">
+                    <?php
+                    echo $_SESSION['message']['text'];
+                    unset($_SESSION['message']);
+                    ?>
+                </div>
+            <?php endif; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Orders</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
 <div class="container mt-5">
     <h2 class="text-center mb-4">My Orders</h2>
 

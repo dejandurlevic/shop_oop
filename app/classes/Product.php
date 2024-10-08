@@ -15,6 +15,14 @@ class Product extends DB{
         $sql = "SELECT * FROM products WHERE product_id = $product_id";
         $result = $this->database->query($sql);
         return $result->fetch_assoc();
-        
+    }
+    public function update(){
+
+    }
+    public function delete(){
+
+    }
+    public function create(){
+
     }
 }
